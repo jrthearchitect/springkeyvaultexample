@@ -2,18 +2,18 @@
 
 #################
 # This guide will walk you through the end to end process of: 
-#       1. Building a springboot application which pulls secret values from Azure KeyVault 
-#           (Secrets are made avaialble to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
-#       2. Containerizing/Building docker Image of that application
-#       3. Pushing the docker image to your image Repository
-#       4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
+       1. Building a springboot application which pulls secret values from Azure KeyVault 
+           (Secrets are made avaialble to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
+       2. Containerizing/Building docker Image of that application
+       3. Pushing the docker image to your image Repository
+       4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
 #################
 
 #################
 # Pre-reqs: 
-#   1.  Azure Subscription with appropriate permissions to create resources
-#   2.  Kubernetes Cluster 
-#   3.  JAVA 
+   1.  Azure Subscription with appropriate permissions to create resources
+   2.  Kubernetes Cluster 
+   3.  JAVA 
 #################
 
 
@@ -24,8 +24,8 @@ az group create --name <InsertNameHere> -l <InsertLocationHere>     #replace the
 az keyvault create --name <InsertNameHere> -g <InsertResourceGroupName>    #replace the name and ResourceGroup name variables
 
 # # replace the variable below with the vault name to be used in next step
-# # —> https://<InsertVaultNameHere>.vault.azure.net/
-# # Example: https://myExampleKeyVaultName.vault.azure.net/  #Please make a note of this URL.   
+  —> https://<InsertVaultNameHere>.vault.azure.net/
+  Example: https://myExampleKeyVaultName.vault.azure.net/  #Please make a note of this URL.   
 
 # Set your secrets in Vault 
  az keyvault secret set --vault-name tkgi \
