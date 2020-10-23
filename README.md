@@ -1,18 +1,18 @@
-# springkeyvaultexample
+# K8s Springboot App Integration with Azure KeyVault
 
-#################
+
 # This guide will walk you through the end to end process of: 
-       1. Building a springboot application which pulls secret values from Azure KeyVault 
-           (Secrets are made avaialble to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
-       2. Containerizing/Building docker Image of that application
-       3. Pushing the docker image to your image Repository
-       4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
+1. Building a springboot application which pulls secret values from Azure KeyVault 
+    (Secrets are made avaialble to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
+2. Containerizing/Building docker Image of that application
+3. Pushing the docker image to your image Repository
+4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
 
 
 # Pre-reqs: 
-   1.  Azure Subscription with appropriate permissions to create resources
-   2.  Kubernetes Cluster 
-   3.  JAVA 
+1.  Azure Subscription with appropriate permissions to create resources
+2.  Kubernetes Cluster 
+3.  JAVA 
 
 
 # Create Azure Resource Group if you don't have one already created.   
@@ -37,8 +37,8 @@ curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secr
 
 
 # Specify your key vault in your app properties 
-# Edit —>  src/main/resources/application.properties
-# Add the following to the properties file
+ Edit —>  src/main/resources/application.properties
+ Add the following to the properties file
     ###############################################################
     #               azure.keyvault.enabled=true
     #               azure.keyvault.uri=${vaulturl}
