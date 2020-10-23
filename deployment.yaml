@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbootazkv
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      service: springbootazkv
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        service: springbootazkv
+    spec:
+      containers:
+        - name: springbootazkv
+          image: jrobinson/springazurekv:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: azure_keyvault_uri
+              valueFrom:
+                secretKeyRef:
+                  name: dev-kv-secret
+                  key: azure_keyvault_uri
+            - name: azure_keyvault_tenant-id
+              valueFrom:
+                secretKeyRef:
+                  name: dev-kv-secret
+                  key: azure_keyvault_tenant-id
+            - name: azure_keyvault_client-id
+              valueFrom:
+                secretKeyRef:
+                  name: dev-kv-secret
+                  key: azure_keyvault_client-id
+            - name: azure_keyvault_client-key
+              valueFrom:
+                secretKeyRef:
+                  name: dev-kv-secret
+                  key: azure_keyvault_client-key
