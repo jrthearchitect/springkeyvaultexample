@@ -16,22 +16,21 @@
 
 
 # Create Azure Resource Group if you don't have one already created.   
-az group create --name <InsertNameHere> -l <InsertLocationHere>     #replace the name and location variables   
+az group create --name "InsertNameHere" -l "InsertLocationHere"    #replace the name and location variables   
 
 # Create Azure Key Vault  
-az keyvault create --name <InsertNameHere> -g <InsertResourceGroupName>    #replace the name and ResourceGroup name variables
+az keyvault create --name InsertNameHere -g "InsertResourceGroupName"   #replace the name and ResourceGroup name variables
 
 #  replace the variable below with the vault name to be used in next step
-  —> https://<InsertVaultNameHere>.vault.azure.net/
   Example: https://myExampleKeyVaultName.vault.azure.net/  #Please make a note of this URL.   
 
 # Set your secrets in Vault 
  az keyvault secret set --vault-name tkgi \
-     --name "<NameOfSecret>" \
-     --value "<VauleOfSecret>"
+     --name "NameOfSecret" \
+     --value "VauleOfSecret"
 
 # Grant your app access to KeyVault 
-az keyvault set-policy --name tkgi --object-id <InsertObjectIDofServicePrincipal>  --secret-permissions set get list
+az keyvault set-policy --name tkgi --object-id "InsertObjectIDofServicePrincipal"  --secret-permissions set get list
 
 # Optional Step - Generate a sample project using start.spring.io    #Only if your starting from scratch 
 curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secrets -d baseDir=springapp -d bootVersion=2.3.1.RELEASE -d javaVersion=1.8 | tar -xzvf -
@@ -56,7 +55,7 @@ During Build process of your Code -->
                                 #    export clientid=############################
                                 #    export clientkey=############################
                                 #    export tenantid=############################
-                                #    export vaulturl=https://<InsertVaultNameHere>.vault.azure.net
+                                #    export vaulturl=https://InsertVaultNameHere.vault.azure.net
                                 ############################################################    
 
 #Build the code
@@ -66,10 +65,10 @@ During Build process of your Code -->
 kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client-id=$clientid --from-literal=azure_keyvault_client-key=$clientkey --from-literal=azure_keyvault_tenant-id=$tenantid --from-literal=azure_keyvault_uri=$vaulturl
 
 #Build docker image from target JAR produced by build
-docker build -t <YourImageRepoLocationNameAndTag> .
+docker build -t YourImageRepoLocationNameAndTag .
 
 #Push docker image to Repository 
-docker push <YourImageRepoLocationNameAndTag>:<TagName>
+docker push YourImageRepoLocationNameAndTag:TagName
 
 #Deploy new image to K8s Cluster 
 kubectl apply -f deployment.yaml
