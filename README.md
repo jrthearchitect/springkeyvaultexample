@@ -13,6 +13,10 @@
 1.  Azure Subscription with appropriate permissions to create resources
 2.  Kubernetes Cluster 
 3.  JAVA 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Azure Specific Steps: 
 
 
 # Create Azure Resource Group if you don't have one already created.   
@@ -31,6 +35,11 @@ az keyvault create --name InsertNameHere -g "InsertResourceGroupName"   #replace
 
 # Grant your app access to KeyVault 
 az keyvault set-policy --name tkgi --object-id "InsertObjectIDofServicePrincipal"  --secret-permissions set get list
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+# Application Specific Steps: 
+
 
 # Optional Step - Generate a sample project using start.spring.io    #Only if your starting from scratch 
 curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secrets -d baseDir=springapp -d bootVersion=2.3.1.RELEASE -d javaVersion=1.8 | tar -xzvf -
@@ -61,14 +70,21 @@ During Build process of your Code -->
 #Build the code
 ./mvnw clean package 
 
-# Create K8s Secret 
-kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client-id=$clientid --from-literal=azure_keyvault_client-key=$clientkey --from-literal=azure_keyvault_tenant-id=$tenantid --from-literal=azure_keyvault_uri=$vaulturl
-
 #Build docker image from target JAR produced by build
 docker build -t YourImageRepoLocationNameAndTag .
 
 #Push docker image to Repository 
 docker push YourImageRepoLocationNameAndTag:TagName
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Kubernetes Specific Steps: 
+
+
+# Create K8s Secret 
+kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client-id=$clientid --from-literal=azure_keyvault_client-key=$clientkey --from-literal=azure_keyvault_tenant-id=$tenantid --from-literal=azure_keyvault_uri=$vaulturl
+
 
 #Deploy new image to K8s Cluster 
 kubectl apply -f deployment.yaml
