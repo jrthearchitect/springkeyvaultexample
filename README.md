@@ -65,25 +65,27 @@ curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secr
  Add the following to the properties file
  <pre><code>
     ###############################################################
-    #               azure.keyvault.enabled=true
-    #               azure.keyvault.uri=${vaulturl}
-    #               azure.keyvault.client-id=${clientid}
-    #               azure.keyvault.client-key=${clientkey}
-    #               azure.keyvault.tenant-id=${tenantid}
+                   azure.keyvault.enabled=true
+                   azure.keyvault.uri=${vaulturl}
+                   azure.keyvault.client-id=${clientid}
+                   azure.keyvault.client-key=${clientkey}
+                   azure.keyvault.tenant-id=${tenantid}
     ################################################################
 </code></pre>
 
-During Build process of your Code --> 
-                                    # Export DEVELOPMENT-ONLY K8s Secrets to environment 
-                                    # This will ensure you code builds however it will not save the environment variables with the JAR.   
-                                    # When running the JAR, it will require these values to be set via host env or kubenetes secrets depending on your target environment.  
+
+# During Build process of your Code --> 
+ Export DEVELOPMENT-ONLY K8s Secrets to environment 
+ This will ensure you code builds however it will not save the environment variables with the JAR.   
+ When running the JAR, it will require these values to be set via host env or kubenetes secrets depending on your target environment.  
+ 
  <pre><code>
-                                ############################################################    
-                                #    export clientid=############################
-                                #    export clientkey=############################
-                                #    export tenantid=############################
-                                #    export vaulturl=https://InsertVaultNameHere.vault.azure.net
-                                ############################################################    
+    ############################################################    
+        export clientid=############################
+        export clientkey=############################
+        export tenantid=############################
+        export vaulturl=https://InsertVaultNameHere.vault.azure.net
+    ############################################################    
 </code></pre>
 
 #Build the code
