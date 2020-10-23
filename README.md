@@ -26,18 +26,26 @@ az group create --name "InsertNameHere" -l "InsertLocationHere"
 </code></pre>
 
 # Create Azure Key Vault  
-az keyvault create --name InsertNameHere -g "InsertResourceGroupName"   #replace the name and ResourceGroup name variables
+Replace the name and ResourceGroup name variables
+<pre><code>
+az keyvault create --name InsertNameHere -g "InsertResourceGroupName"   
+</code></pre>
 
 #  replace the variable below with the vault name to be used in next step
   Example: https://myExampleKeyVaultName.vault.azure.net/  #Please make a note of this URL.   
 
 # Set your secrets in Vault 
+<pre><code>
  az keyvault secret set --vault-name tkgi \
      --name "NameOfSecret" \
      --value "VauleOfSecret"
+</code></pre>
+
 
 # Grant your app access to KeyVault 
+<pre><code>
 az keyvault set-policy --name tkgi --object-id "InsertObjectIDofServicePrincipal"  --secret-permissions set get list
+</code></pre>
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
