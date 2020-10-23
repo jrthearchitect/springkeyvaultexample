@@ -7,23 +7,21 @@
        2. Containerizing/Building docker Image of that application
        3. Pushing the docker image to your image Repository
        4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
-#################
 
-#################
+
 # Pre-reqs: 
    1.  Azure Subscription with appropriate permissions to create resources
    2.  Kubernetes Cluster 
    3.  JAVA 
-#################
 
 
-# #Create Azure Resource Group if you don't have one already created.   
+# Create Azure Resource Group if you don't have one already created.   
 az group create --name <InsertNameHere> -l <InsertLocationHere>     #replace the name and location variables   
 
-# #Create Azure Key Vault  
+# Create Azure Key Vault  
 az keyvault create --name <InsertNameHere> -g <InsertResourceGroupName>    #replace the name and ResourceGroup name variables
 
-# # replace the variable below with the vault name to be used in next step
+#  replace the variable below with the vault name to be used in next step
   —> https://<InsertVaultNameHere>.vault.azure.net/
   Example: https://myExampleKeyVaultName.vault.azure.net/  #Please make a note of this URL.   
 
@@ -32,14 +30,14 @@ az keyvault create --name <InsertNameHere> -g <InsertResourceGroupName>    #repl
      --name "<NameOfSecret>" \
      --value "<VauleOfSecret>"
 
-# #Grant your app access to KeyVault 
+# Grant your app access to KeyVault 
 az keyvault set-policy --name tkgi --object-id <InsertObjectIDofServicePrincipal>  --secret-permissions set get list
 
-# #Optional Step - Generate a sample project using start.spring.io    #Only if your starting from scratch 
+# Optional Step - Generate a sample project using start.spring.io    #Only if your starting from scratch 
 curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secrets -d baseDir=springapp -d bootVersion=2.3.1.RELEASE -d javaVersion=1.8 | tar -xzvf -
 
 
-# # Specify your key vault in your app properties 
+# Specify your key vault in your app properties 
 # Edit —>  src/main/resources/application.properties
 # Add the following to the properties file
     ###############################################################
