@@ -20,8 +20,9 @@
 
 
 # Create Azure Resource Group if you don't already have one for this purpose.   
+Replace the name and location variables 
 <pre><code>
-az group create --name "InsertNameHere" -l "InsertLocationHere"    #replace the name and location variables 
+az group create --name "InsertNameHere" -l "InsertLocationHere"    
 </code></pre>
 
 # Create Azure Key Vault  
