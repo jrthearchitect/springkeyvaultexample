@@ -13,6 +13,7 @@
 1.  Azure Subscription with appropriate permissions to create resources
 2.  Kubernetes Cluster 
 3.  JAVA 
+4.  Azure CLI
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 
