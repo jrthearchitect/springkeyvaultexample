@@ -55,7 +55,7 @@ az keyvault set-policy --name tkgi --object-id "InsertObjectIDofServicePrincipal
 
 -------------------------------------------------
 # Optional Step  - Generate a sample project using start.spring.io 
-(Only if your starting from scratch) 
+(Only if you're starting from scratch) 
 <pre><code>
 curl https://start.spring.io/starter.tgz -d dependencies=web,azure-keyvault-secrets -d baseDir=springapp -d bootVersion=2.3.1.RELEASE -d javaVersion=1.8 | tar -xzvf -
 </code></pre>
