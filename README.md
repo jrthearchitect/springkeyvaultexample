@@ -114,12 +114,13 @@ kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client
 </code></pre>
 
 
-#Deploy new image to K8s Cluster 
+# Deploy new image to K8s Cluster 
  <pre><code>
 kubectl apply -f deployment.yaml
 </code></pre>
 
- <pre><code>
+
 # Initiate Rolling Update 
+ <pre><code>
 kubectl rollout restart -f deployment.yaml
 </code></pre>
