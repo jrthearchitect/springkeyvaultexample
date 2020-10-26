@@ -39,7 +39,7 @@ az keyvault create --name InsertNameHere -g "InsertResourceGroupName"
 
 # Set your secrets in Vault 
 <pre><code>
- az keyvault secret set --vault-name tkgi \
+ az keyvault secret set --vault-name NameofYourKeyVault \
      --name "NameOfSecret" \
      --value "VauleOfSecret"
 </code></pre>
@@ -113,9 +113,14 @@ docker push YourImageRepoLocationNameAndTag:TagName
 # Kubernetes Specific Steps: 
 
 
+# Create K8s ConfigMap 
+ <pre><code>
+kubectl apply -f configmap_dev.yaml
+</code></pre>
+
 # Create K8s Secret 
  <pre><code>
-kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client-id=$clientid --from-literal=azure_keyvault_client-key=$clientkey --from-literal=azure_keyvault_tenant-id=$tenantid --from-literal=azure_keyvault_uri=$vaulturl
+kubectl create secret generic dev-kv-secret --from-literal=azure_keyvault_client-key=$clientkey
 </code></pre>
 
 

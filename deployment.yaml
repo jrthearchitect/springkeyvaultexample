@@ -19,26 +19,15 @@ spec:
       containers:
         - name: springbootazkv
           image: jrobinson/springazurekv:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5432
           env:
-            - name: azure_keyvault_uri
-              valueFrom:
-                secretKeyRef:
-                  name: dev-kv-secret
-                  key: azure_keyvault_uri
-            - name: azure_keyvault_tenant-id
-              valueFrom:
-                secretKeyRef:
-                  name: dev-kv-secret
-                  key: azure_keyvault_tenant-id
-            - name: azure_keyvault_client-id
-              valueFrom:
-                secretKeyRef:
-                  name: dev-kv-secret
-                  key: azure_keyvault_client-id
             - name: azure_keyvault_client-key
               valueFrom:
                 secretKeyRef:
                   name: dev-kv-secret
                   key: azure_keyvault_client-key
+          envFrom:
+            - configMapRef:
+                name: dev-special-config

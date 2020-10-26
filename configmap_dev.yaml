@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-special-config
+  namespace: default
+data:
+  azure_keyvault_client-id: ####################################
+  azure_keyvault_tenant-id: #################################### 
+  azure_keyvault_uri: https://####.vault.azure.net
