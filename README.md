@@ -3,7 +3,7 @@
 
 # This guide will walk you through the end to end process of: 
 1. Building a springboot application which pulls secret values from Azure KeyVault 
-    (Secrets are made avaialble to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
+    (Secrets are made available to the application via environment variables after they are pulled from KeyVault)  -- This happens automagically 
 2. Containerizing/Building docker Image of that application
 3. Pushing the docker image to your image Repository
 4. Deploying the image to a kubernetes cluster with rolling updates enabled.   
